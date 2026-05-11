@@ -44,6 +44,11 @@ jobs:
           python -c "import sklearn"
           python -c "import faiss"
 
+      - name: Create Dummy Environment File
+        run: |
+          touch .env
+          echo "ENVIRONMENT=ci" >> .env
+
       - name: Validate Docker Compose
         run: docker compose config
 
