@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual Env
+.venv/
+
+# Environment Variables
+.env
+
+# Airflow
+airflow.db
+airflow_home/logs/
+
+# Docker
+*.log
+
+# Streamlit
+.streamlit/
+
+# Vector Index
+rag/vector_store/index/
+
+# OS Files
+.DS_Store

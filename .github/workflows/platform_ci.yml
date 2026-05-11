@@ -1,0 +1,58 @@
+name: AI Reliability Platform CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+
+  build-and-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+          pip install duckdb pandas numpy scipy \
+                      scikit-learn streamlit \
+                      sentence-transformers \
+                      faiss-cpu groq \
+                      python-dotenv
+
+      - name: Validate Python Imports
+        run: |
+          python -c "import duckdb"
+          python -c "import pandas"
+          python -c "import sklearn"
+          python -c "import faiss"
+
+      - name: Validate Docker Compose
+        run: docker compose config
+
+      - name: Validate Repository Structure
+        run: |
+          test -d dashboard
+          test -d detection
+          test -d rag
+          test -f docker-compose.yml
+
+      - name: Success
+        run: echo "✅ CI pipeline passed"

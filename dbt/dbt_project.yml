@@ -1,0 +1,17 @@
+name: anomaly_pipeline
+version: '1.0.0'
+config-version: 2
+
+profile: anomaly_pipeline
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+models:
+  anomaly_pipeline:
+    staging:
+      +materialized: view
+
+    marts:
+      +materialized: table

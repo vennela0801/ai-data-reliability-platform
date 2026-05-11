@@ -1,0 +1,16 @@
+apache-airflow==2.9.2
+duckdb
+dbt-core
+dbt-duckdb
+pandas
+numpy
+scipy
+scikit-learn
+streamlit
+plotly
+groq
+python-dotenv
+matplotlib
+slack_sdk
+sentence-transformers
+faiss-cpu
